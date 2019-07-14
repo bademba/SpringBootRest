@@ -1,18 +1,16 @@
 package com.brian.test;
 
-import com.brian.response.ResponseService;
-
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.http.HttpStatus;
+ 
+@ResponseStatus(HttpStatus.NOT_FOUND)
 public class UserException extends RuntimeException{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	//Raises a fault when user is not found
-	public String UserNotFoundException() {
-	     ResponseService responseService =  new ResponseService();
-	     
-		return responseService.userNotFound();
-	  } 
+	
+	
+	 
 }

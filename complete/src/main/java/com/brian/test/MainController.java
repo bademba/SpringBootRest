@@ -36,7 +36,6 @@ public class MainController {
 	Responses responses = new Responses();
 	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(MainController.class);
 
-	// Create a new user
 	@RequestMapping(method = RequestMethod.POST, value = "/newuser")
 	public @ResponseBody String addNewUser(@RequestBody User user)
 			throws JsonGenerationException, JsonMappingException, IOException {
@@ -49,58 +48,38 @@ public class MainController {
 		return responseService.successResponse();
 	}
 
-	// update user details
 	@PutMapping("/updateuser/{id}")
 	public @ResponseBody User updateUser(@RequestBody User user, @PathVariable Integer id)
 			throws JsonGenerationException, JsonMappingException, IOException {
 
 		User usr = userRepository.findById(id);
 		try {
-
 			usr.setName(user.getName());
-			usr.setEmail(user.getEmail());
-			 
+			usr.setEmail(user.getEmail());			 
 			return userRepository.save(usr);
 		}
-
 		catch (UserException ex) {
 			return user;
 		}
-
 	}
 
-	//deleteUser
 	@DeleteMapping("/deleteuser/{id}")
-	public @ResponseBody void deleteUser(@PathVariable  Integer id) {
-		 try {
-			 
-			 User usr =  userRepository.findById(id);
-			 userRepository.delete(usr);
-		} catch (UserException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			//UserException  userException =  new UserException();
-			//System.out.println(userException.UserNotFoundException(id));
-		}
-		  
+	public  void deleteUser(@PathVariable  Integer id) {
+	 userRepository.delete(id);
 	}
-	
-	// list all users
+
 	@GetMapping(path = "/all")
 	public @ResponseBody Iterable<User> getAllUsers() {
-		// This returns a JSON or XML with the users
 		return userRepository.findAll();
 	}
 
-	//get user details based on id
 	@GetMapping(path = "/user/{id}")
-	public User  getUser(@PathVariable Integer id) {
+	public  User  getUser(@PathVariable Integer id) {
 		User user =  userRepository.findById(id);
-		user.getName();
 		user.getEmail();
+		user.getName();
 		user.getResponseid();
+		LOG.info("|id="+user.getId() +" |name="+user.getName() +  " |ëmail="+user.getEmail()+" |responseId="+user.getResponseid());
 		return user;
-//		return userRepository.findById(id);
-
-	}
+		} 
 }

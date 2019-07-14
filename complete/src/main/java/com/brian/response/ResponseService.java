@@ -62,19 +62,19 @@ public class ResponseService {
 	}
 	
 	@ResponseBody
-	public String userNotFound() {
+	public String  userNotFound() {
 		response.responseId = uuid.toString();
 		response.responseStatus = 0;
 		response.responseCode = 200;
 		response.responseDesc = "User not found";
-		String jsonResponse = "";
+		String jsonResponse="";
 		try {
-			jsonResponse = mapper.writeValueAsString(response).toString();
+			jsonResponse = mapper.writeValueAsString(response);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return jsonResponse.toString();
-		
+		return jsonResponse;
+	 
 	}
 }
