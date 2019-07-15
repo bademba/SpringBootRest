@@ -3,12 +3,16 @@ package com.brian.test;
 
 import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity // This tells Hibernate to make a table out of this class
+@Table(name = "User")
+//@javax.persistence.Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,6 +23,7 @@ public class User {
     private String email;
     private String responseid;
 
+    @Column(name = "id")
 	public Integer getId() {
 		
 		return id;
@@ -29,6 +34,7 @@ public class User {
 		this.id = id;
 	}
 
+	@Column(name = "name")
 	public String getName() {
 		
 		return name;
@@ -38,6 +44,7 @@ public class User {
 		this.name = name;
 	}
 
+	@Column(name = "email")
 	public String getEmail() {
 		return email;
 	}
@@ -46,6 +53,7 @@ public class User {
 		this.email = email;
 	}
 
+	@Column(name = "responseid")
 	public String getResponseid() {
 		UUID uuid = UUID.randomUUID();
 		responseid = uuid.toString();

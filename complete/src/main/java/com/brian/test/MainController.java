@@ -82,4 +82,11 @@ public class MainController {
 		LOG.info("|id="+user.getId() +" |name="+user.getName() +  " |ëmail="+user.getEmail()+" |responseId="+user.getResponseid());
 		return user;
 		} 
+	
+	@GetMapping(path = "/finduser/{email}")
+	public  User  findByEmail(@PathVariable String email) {
+		return  userRepository.findByEmail(email);
+	 
+		 
+		} 
 }

@@ -2,6 +2,7 @@ package com.brian.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
  
 
 @Service
@@ -29,4 +30,7 @@ public class UserService {
 	public User findById(Integer id) {
 		return userRepository.findById(id);
 	}
+	public  User  findByEmail(String email) {
+		return  userRepository.findByEmail(email); 
+		} 
 }
